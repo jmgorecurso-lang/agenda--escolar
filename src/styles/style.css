@@ -1,0 +1,592 @@
+/* ===== Variables ===== */
+:root {
+  --fondo: #3c3d3b;
+  --superficie: #0a0a0b;
+  --superficie-2: #5a5a5a;
+  --texto: #070707;
+  --texto-suave: #eceff5;
+  --linea-gradient: linear-gradient(135deg, #7c6fff, #ff6fb0) 1;
+  --acento: #6d8196;
+
+  --vencido: #ff5c6c;
+  --urgente: #ffa24d;
+  --semana: #f2d64b;
+  --futuro: #4ecb8f;
+  --radio: 12px;
+  
+  
+  --gradient-prueba: linear-gradient(180deg, rgba(1, 6, 15, 1) 0%, rgb(130, 130, 127) 43%, rgba(22, 22, 23, 1) 100%);
+  --sombra-prueba: 1px 2px 20px 6px rgba(223, 236, 139, 0.35);
+}
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.tauri-regular {
+  font-family: "Tauri", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.englebert-regular {
+  font-family: "Englebert", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.mouse-memoirs-regular {
+  font-family: "Mouse Memoirs", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* background: linear-gradient(342deg, rgba(26, 32, 44, 1) 0%, rgba(114, 131, 148, 1) 50%, rgba(45, 55, 72, 1) 100%); */
+  background-image: url(../assets/logoOnepis.webp);
+  background-position: center center;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: var(--texto);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.contenido {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h2 {
+  margin: 1.5rem 0 1rem;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(1, 6, 15, 1) 0%, rgb(130, 130, 127) 43%, rgba(22, 22, 23, 1) 100%);
+  box-shadow: -1px -1px 6px black;
+  
+}
+
+.navbar-logo img {
+  height: 40px;
+  display: block;
+  padding-left: 20px;
+}
+
+.logoTitulo {
+  height: 78px;
+
+}
+
+.navbar-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: -0.5rem 0.75rem;
+  
+}
+/* ===== Navbar: elemento activo ===== */
+.navbar button.activo {
+ 
+  color: #fff;
+   border-bottom: 4px solid var(--acento);
+  border-top: 4px solid var(--acento);
+  font-size: 0.95rem;
+}
+
+.navbar button:hover {
+  background: #82c8E5;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.navbar-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  background: var(--superficie-2);
+
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+}
+
+.dropdown:hover .navbar-submenu {
+  display: block;
+}
+
+.navbar-submenu button {
+  width: 100%;
+  text-align: left;
+}
+
+.navbar-submenu button:hover {
+  background: #82c8E5;
+}
+
+/* ===== Formulario ===== */
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  /* background: var(--superficie); */
+background: rgb(58, 58, 58);
+  /* background: linear-gradient(175deg, rgba(1, 6, 15, 1) 0%, rgba(125, 150, 127, 1) 50%, rgba(22, 22, 23, 1) 100%); */
+  padding: 1rem;
+  border-radius: var(--radio);
+  /* box-shadow: -1px -1px 16px rgb(84, 84, 84); */
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--superficie-2);
+  background: rgb(198, 197, 197);
+  color: rgb(92, 92, 243);
+  font: inherit;
+}
+
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+  outline: 2px solid var(--color-boton1);
+  border-color: transparent;
+}
+
+.formulario input[name='titulo'],
+.formulario textarea {
+  grid-column: 1 / -1;
+}
+
+#anadir {
+  background: linear-gradient(90deg,rgba(39, 27, 250, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: "Tauri", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+.formulario button[type='submit'] {
+  background: var(--acento);
+  color: #fff;
+}
+
+.formulario button:hover {
+  filter: brightness(1.15);
+}
+
+/* ===== Lista y tarjetas ===== */
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+
+.tarjeta {
+  --color: var(--futuro);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: red;
+  border-left: 5px solid var(--color);
+  border-radius: var(--radio);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--sombra-prueba);
+}
+
+.tarjeta.vencido {
+  --color: var(--vencido);
+}
+
+.tarjeta.urgente {
+  --color: var(--urgente);
+}
+
+.tarjeta.semana {
+  --color: var(--semana);
+}
+
+.tarjeta.futuro {
+  --color: var(--futuro);
+}
+
+.tarjeta.hecho {
+  --color: var(--texto-suave);
+  opacity: 0.55;
+}
+
+.tarjeta.hecho h3 {
+  text-decoration: line-through;
+}
+
+.tarjeta h3 {
+  margin: 0.3rem 0 0;
+}
+
+.tarjeta p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+.tarjeta-notas {
+  font-style: italic;
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tarjeta-tipo {
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--superficie-2);
+}
+
+.tarjeta.examen .tarjeta-tipo {
+  background: var(--acento);
+  color: #fff;
+}
+
+.tarjeta-urgencia {
+  color: var(--color);
+  font-weight: 700;
+}
+
+.tarjeta-acciones {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.tarjeta-acciones button {
+  padding: 0.35rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--superficie-2);
+  color: var(--texto);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tarjeta-acciones button:hover {
+  filter: brightness(1.2);
+}
+
+.tarjeta-acciones button:last-child:hover {
+  background: var(--vencido);
+}
+
+/* ===== Filtros ===== */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.filtros-tipo {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.filtros-tipo button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #6d8196;
+  border-radius: 25px;
+  background: #0047ab;
+  color: var(--texto-suave);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filtros-tipo button:hover {
+  color: var(--texto);
+}
+
+.filtros-tipo button.activo {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+.filtros-ocultar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.filtros-ocultar input {
+  accent-color: var(--acento);
+}
+
+/* ===== Avisos ===== */
+.aviso {
+  margin: 0 0 1rem;
+  color: var(--texto-suave);
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 3px groove gray;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.aviso-boton {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--acento);
+  border-radius: 8px;
+  background: none;
+  color: var(--acento);
+  font: inherit;
+  cursor: pointer;
+}
+
+.aviso-boton:hover {
+  background: var(--acento);
+  color: #fff;
+}
+
+/* ===== Resumen ===== */
+.resumen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -0.5rem 0 1rem;
+  color: var(--texto-suave);
+}
+
+.resumen-total {
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.resumen-chip {
+  padding: 0.1rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--fondo);
+}
+
+.resumen-chip.vencido {
+  background: var(--vencido);
+}
+
+.resumen-chip.urgente {
+  background: var(--urgente);
+}
+
+/* ===== Acciones de la tarjeta: Borrar y enlace a Calendar ===== */
+.tarjeta-acciones {
+  flex-wrap: wrap;
+}
+
+.tarjeta-acciones .borrar:hover {
+  background: var(--vencido);
+}
+
+.tarjeta-acciones a {
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  background: var(--superficie-2);
+  color: var(--texto);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.tarjeta-acciones a:hover {
+  filter: brightness(1.2);
+}
+
+.tarjeta-acciones button:last-child:hover {
+  background: var(--vencido);
+}
+/* ===== Vistas ===== */
+.vistas {
+  margin-bottom: 1rem;
+}
+
+
+
+/* ===== Barra de vistas ===== */
+.barra-vistas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.boton-nuevo {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-nuevo:hover {
+  filter: brightness(1.15);
+}
+
+/* ===== Modal ===== */
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(8, 12, 24, 0.7);
+  z-index: 100;
+   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal {
+  width: 100%;
+  position: fixed;
+  
+  z-index: 100;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.25rem;
+ background: var(--superficie); 
+  border-radius: var(--radio);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  
+ 
+}
+
+.modal-cabecera {
+  display: flex;
+ justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-cabecera h2 {
+  display: flex;
+  margin: 0;
+  font-size: 2.2rem;
+  padding-left: 25%;
+  font-weight: 400;
+  font-family: "Englebert", cursive;
+  color: rgb(142, 141, 141);
+  text-shadow: 1px 1px 8px #ee0924;
+}
+
+.modal-cerrar {
+  border: none;
+  background: none;
+  color: var(--texto-suave);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  right: 5px;
+}
+
+.modal-cerrar:hover {
+  color: var(--semana);
+  transform: scale(115%);
+}
+
+.modal .formulario {
+  padding: 0;
+  background: none;
+  color:rgb(165, 164, 164);
+}
+
+.modal-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--superficie-2);
+}
+
+.modal-acciones button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--superficie-2);
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.modal-acciones button:hover {
+  filter: brightness(1.2);
+}
+
+.modal-acciones .borrar:hover {
+  background: var(--vencido);
+}
