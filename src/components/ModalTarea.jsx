@@ -1,5 +1,6 @@
 import Modal from './Modal'
 import Formulario from './Formulario'
+import { enlaceGoogleCalendar } from '../utils/calendario'
 
 function ModalTarea({
   modal,
@@ -40,6 +41,32 @@ function ModalTarea({
           >
             {elemento.hecho ? 'Marcar como pendiente' : 'Marcar como hecho'}
           </button>
+          {editando && (
+            <div className="modal-acciones">
+              <button
+                onClick={() => {
+                  onAlternar(elemento.id)
+                  onCerrar()
+                }}
+              >
+                {elemento.hecho ? 'Marcar como pendiente' : 'Marcar como hecho'}
+              </button>
+
+              {!elemento.hecho && (
+                <a
+                  href={enlaceGoogleCalendar(elemento)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Añadir a Google Calendar
+                </a>
+              )}
+
+              <button className="borrar" onClick={confirmarBorrado}>
+                Borrar
+              </button>
+            </div>
+          )}
           <button className="borrar" onClick={confirmarBorrado}>
             Borrar
           </button>
