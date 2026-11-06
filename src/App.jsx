@@ -10,6 +10,8 @@ import { coincideConFiltro, asignaturaPorDefecto } from './data/asignaturas'
 import { useRecordatorios } from './hooks/useRecordatorios'
 import { useAhora } from './hooks/useAhora'
 import { aISO } from './utils/fechas'
+import CuentaGoogle from './components/CuentaGoogle'
+import { useGoogle } from './hooks/useGoogle'
 
 function App() {
   const [asignaturaActiva, setAsignaturaActiva] = useState(null)
@@ -25,6 +27,7 @@ function App() {
       return []
     }
   })
+  const { usuario, error, iniciarSesion, cerrarSesion } = useGoogle()
 
   useEffect(() => {
     localStorage.setItem('agenda-elementos', JSON.stringify(elementos))
@@ -82,7 +85,15 @@ function App() {
     <>
       <Navbar onSelect={setAsignaturaActiva} activa={asignaturaActiva} />
       <main className="contenido">
-        <Notificaciones />
+        <div className="barra-superior">
+          <Notificaciones />
+          <CuentaGoogle
+            usuario={usuario}
+            error={error}
+            onLogin={iniciarSesion}
+            onLogout={cerrarSesion}
+          />
+        </div>
         <h2>{asignaturaActiva ?? 'Todo'}</h2>
         <Resumen elementos={visibles} />
         <Filtros
