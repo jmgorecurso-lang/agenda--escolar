@@ -683,3 +683,13 @@ background: rgb(58, 58, 58);
   color: var(--texto-suave);
   font-size: 0.8rem;
 }
+/* ===== Aviso de sincronización ===== */
+.aviso-sync {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid var(--urgente);
+  border-radius: 8px;
+  background: var(--superficie-2);
+  font-size: 0.9rem;
+  cursor: pointer;
+}

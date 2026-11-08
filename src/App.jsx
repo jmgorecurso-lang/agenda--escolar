@@ -12,6 +12,7 @@ import { useAhora } from './hooks/useAhora'
 import { aISO } from './utils/fechas'
 import CuentaGoogle from './components/CuentaGoogle'
 import { useGoogle } from './hooks/useGoogle'
+import { crearEvento, actualizarEvento, borrarEvento } from './utils/googleCalendar'
 
 function App() {
   const [asignaturaActiva, setAsignaturaActiva] = useState(null)
@@ -28,6 +29,18 @@ function App() {
     }
   })
   const { usuario, error, iniciarSesion, cerrarSesion } = useGoogle()
+  const [avisoSync, setAvisoSync] = useState('')
+
+  const puedeSincronizar = Boolean(usuario?.token && usuario.calendario)
+
+  function manejarErrorGoogle(error) {
+    if (error.status === 401) {
+      cerrarSesion()
+      setAvisoSync('Tu sesión de Google ha caducado. Inicia sesión de nuevo para sincronizar con Calendar.')
+    } else {
+      setAvisoSync('No se pudo sincronizar con Google Calendar. La tarea sí se ha guardado en la agenda.')
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('agenda-elementos', JSON.stringify(elementos))
@@ -47,31 +60,62 @@ function App() {
   function cerrarModal() {
     setModal(null)
   }
-
-  function anadirElemento(datos) {
+  async function anadirElemento(datos) {
     const nuevo = { ...datos, id: Date.now(), hecho: false, avisado: false }
     setElementos([...elementos, nuevo])
     cerrarModal()
+
+    if (!puedeSincronizar) return
+    try {
+      const eventId = await crearEvento(usuario.token, nuevo)
+      setElementos((prev) =>
+        prev.map((e) => (e.id === nuevo.id ? { ...e, eventId } : e))
+      )
+    } catch (error) {
+      manejarErrorGoogle(error)
+    }
   }
 
-  function guardarEdicion(datos) {
-    setElementos(
-      elementos.map((e) =>
-        e.id === modal.elemento.id ? { ...e, ...datos, avisado: false } : e
-      )
-    )
+  async function guardarEdicion(datos) {
+    const original = modal.elemento
+    const actualizado = { ...original, ...datos, avisado: false }
+    setElementos(elementos.map((e) => (e.id === original.id ? actualizado : e)))
     cerrarModal()
+
+    if (!puedeSincronizar) return
+    try {
+      if (actualizado.eventId) {
+        await actualizarEvento(usuario.token, actualizado.eventId, actualizado)
+      } else {
+        const eventId = await crearEvento(usuario.token, actualizado)
+        setElementos((prev) =>
+          prev.map((e) => (e.id === actualizado.id ? { ...e, eventId } : e))
+        )
+      }
+    } catch (error) {
+      manejarErrorGoogle(error)
+    }
   }
+
+  async function borrarElemento(id) {
+    const elemento = elementos.find((e) => e.id === id)
+    setElementos(elementos.filter((e) => e.id !== id))
+    cerrarModal()
+
+    if (!puedeSincronizar || !elemento?.eventId) return
+    try {
+      await borrarEvento(usuario.token, elemento.eventId)
+    } catch (error) {
+      manejarErrorGoogle(error)
+    }
+  }
+
+
 
   function alternarHecho(id) {
     setElementos(
       elementos.map((e) => (e.id === id ? { ...e, hecho: !e.hecho } : e))
     )
-  }
-
-  function borrarElemento(id) {
-    setElementos(elementos.filter((e) => e.id !== id))
-    cerrarModal()
   }
 
   const visibles = elementos.filter(
@@ -86,6 +130,11 @@ function App() {
       <Navbar onSelect={setAsignaturaActiva} activa={asignaturaActiva} />
       <main className="contenido">
         <div className="barra-superior">
+          {avisoSync && (
+            <p className="aviso-sync" onClick={() => setAvisoSync('')}>
+              {avisoSync} ×
+            </p>
+          )}
           <Notificaciones />
           <CuentaGoogle
             usuario={usuario}

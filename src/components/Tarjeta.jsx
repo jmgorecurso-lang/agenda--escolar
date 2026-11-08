@@ -53,7 +53,7 @@ function Tarjeta({ elemento, onAlternar, onBorrar, onEditar }) {
                 </button>
                 <button onClick={() => onEditar(elemento)}>Editar</button>
                 <button className="borrar" onClick={confirmarBorrado}>Borrar</button>
-                {!elemento.hecho && (
+                {!elemento.hecho && !elemento.eventId && (
                     <a
                         href={enlaceGoogleCalendar(elemento)}
                         target="_blank"
