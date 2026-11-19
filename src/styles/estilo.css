@@ -1,0 +1,572 @@
+/* ===== Variables ===== */
+:root {
+  --fondo: #3c3d3b;
+  --superficie: #0a0a0b;
+  --superficie-2: #5a5a5a;
+  --texto: #070707;
+  --texto-suave: #eceff5;
+  --linea-gradient: linear-gradient(135deg, #7c6fff, #ff6fb0) 1;
+  --acento: #6d8196;
+
+  --vencido: #ff5c6c;
+  --urgente: #ffa24d;
+  --semana: #f2d64b;
+  --futuro: #4ecb8f;
+  --radio: 12px;
+  
+  
+  --gradient-prueba: linear-gradient(180deg, rgba(1, 6, 15, 1) 0%, rgb(130, 130, 127) 43%, rgba(22, 22, 23, 1) 100%);
+  --sombra-prueba: 1px 2px 20px 6px rgba(223, 236, 139, 0.35);
+}
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.tauri-regular {
+  font-family: "Tauri", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.englebert-regular {
+  font-family: "Englebert", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.mouse-memoirs-regular {
+  font-family: "Mouse Memoirs", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-image: url(../assets/fondog.png);
+  background-position: center center;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: var(--texto-suave);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ===== Avisos ===== */
+.aviso {
+  margin: 0 0 1rem;
+  color: var(--texto-suave);
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 3px groove gray;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.aviso-boton {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--acento);
+  border-radius: 8px;
+  background: none;
+  color: var(--acento);
+  font: inherit;
+  cursor: pointer;
+}
+
+.aviso-boton:hover {
+  background: var(--acento);
+  color: #fff;
+}
+/* ===== Resumen ===== */
+.resumen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -0.5rem 0 1rem;
+  color: var(--texto-suave);
+}
+
+.resumen-total {
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+.resumen-chip {
+  padding: 0.1rem 0.65rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--fondo);
+}
+
+.resumen-chip.vencido {
+  background: var(--vencido);
+}
+
+.resumen-chip.urgente {
+  background: var(--urgente);
+}
+/* ===== Vistas ===== */
+.vistas {
+  margin-bottom: 1rem;
+}
+
+
+
+/* ===== Barra de vistas ===== */
+.barra-vistas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.boton-nuevo {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-nuevo:hover {
+  filter: brightness(1.15);
+}
+
+.modal-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.1rem;
+ 
+}
+
+.modal-acciones button {
+  padding: 0.1rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--superficie-2);
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.modal-acciones button:hover {
+  filter: brightness(1.2);
+}
+
+.modal-acciones .borrar:hover {
+  background: var(--vencido);
+}
+.modal-acciones a {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: #4ecb8f;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.modal-acciones a:hover {
+  filter: brightness(1.2);
+}
+/* ===== Base y Contenedor (Móvil primero) ===== */
+.contenido {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem; /* Menos margen lateral en móvil */
+}
+
+h2 {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 1.4rem;
+}
+
+/* ===== Navbar (Móvil: apilado vertical) ===== */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(180deg, rgba(1, 6, 15, 1) 0%, rgb(130, 130, 127) 43%, rgba(22, 22, 23, 1) 100%);
+  box-shadow: -1px -1px 6px black;
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 36px;
+  display: block;
+  padding-left: 0;
+}
+
+.logoTitulo {
+  height: 54px;
+}
+
+.navbar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.navbar button {
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 6px;
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.65rem 0.75rem; /* Área táctil mínima recomendada */
+}
+
+.navbar button.activo {
+  color: #fff;
+  border-bottom: 3px solid var(--acento);
+  border-top: 3px solid var(--acento);
+}
+
+.navbar button:hover {
+  background: #82c8E5;
+}
+
+/* Submenú en móvil: se integra en el flujo para no cortarse */
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.navbar-submenu {
+  display: none;
+  position: static;
+  width: 100%;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0.4rem;
+  background: var(--superficie-2);
+  border-radius: 8px;
+}
+
+.dropdown:hover .navbar-submenu,
+.dropdown:focus-within .navbar-submenu {
+  display: block;
+}
+
+/* ===== Formulario (Móvil: 1 columna) ===== */
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background: rgb(58, 58, 58);
+  padding: 1rem;
+  border-radius: var(--radio);
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--superficie-2);
+  background: rgb(198, 197, 197);
+  color: rgb(13, 13, 14);
+  font: inherit;
+  font-size: 16px; /* Evita el zoom automático en iOS al enfocar */
+}
+#anadir {
+  background:  rgba(0, 212, 255, 1);
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: "Tauri", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* ===== Lista y tarjetas (Móvil: 1 columna) ===== */
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+.tarjeta-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.tarjeta-acciones button,
+.tarjeta-acciones a {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 0.55rem 0.8rem;
+}
+
+/* ===== Filtros (Móvil: apilados) ===== */
+.filtros {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.filtros-tipo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filtros-tipo button {
+  flex: 1 1 auto;
+ padding: 0.1rem 0.65rem;
+  border-radius: 10px;
+  background: #133542;
+  color: var(--texto-suave);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ===== Modal (Móvil: adaptado a pantalla completa/reducida) ===== */
+.modal-fondo {
+  padding: 0.75rem;
+}
+
+.modal {
+  width: calc(100% - 1.5rem);
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.modal-cabecera h2 {
+  margin: 0;
+  padding-left: 0; /* Eliminado el 25% que desbordaba en móvil */
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+}
+/* ===== Cuenta de Google ===== */
+.barra-superior {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.barra-superior .aviso,
+.barra-superior .aviso-boton {
+  margin-bottom: 0;
+}
+
+.cuenta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.cuenta img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.cuenta button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--superficie-2);
+  border-radius: 8px;
+  background: rgb(66, 216, 46);
+  color: var(--texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+.cuenta button:hover {
+  background: rgb(133, 244, 6);
+  font-weight: bold;
+}
+
+.cuenta-error {
+  color: var(--vencido);
+  font-size: 0.8rem;
+}
+/* ===== Inicio de sesión ===== */
+.boton-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 999px;
+  background: #fff;
+  color: #3c4043;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-google:hover {
+  background: #f1f3f4;
+}
+
+.login-nota {
+  margin: 1rem 0 0;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.cuenta-estado {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+/* ===== Aviso de sincronización ===== */
+.aviso-sync {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid var(--urgente);
+  border-radius: 8px;
+  background: var(--superficie-2);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+/* =========================================================
+   MEDIA QUERIES (Escritorio y Tablet desde 768px en adelante)
+   ========================================================= */
+@media (min-width: 768px) {
+  .contenido {
+    padding: 1.5rem;
+  }
+
+  /* Navbar horizontal original */
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem 0 0;
+  }
+
+  .navbar-logo img {
+    height: 40px;
+    padding-left: 20px;
+  }
+
+  .logoTitulo {
+    height: 78px;
+  }
+
+  .navbar-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    margin: 0 0 0 auto;
+    gap: 0.25rem;
+  }
+
+  .navbar button {
+    width: auto;
+    background: none;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .dropdown {
+    width: auto;
+  }
+
+  .navbar-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    margin: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    z-index: 10;
+  }
+
+  /* Formulario y listas en cuadrícula */
+  .formulario {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .formulario input[name='titulo'],
+  .formulario textarea {
+    grid-column: 1 / -1;
+  }
+
+  .lista {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.9rem;
+  }
+
+  /* Filtros en línea */
+  .filtros {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filtros-tipo {
+    gap: 1.4rem;
+  }
+
+  .filtros-tipo button {
+    flex: initial;
+  }
+
+  /* Modal en escritorio */
+  .modal {
+    padding: 1.25rem;
+  }
+
+  .modal-cabecera h2 {
+    margin: 0 auto; /* Centra el título sin romper el botón cerrar */
+  }
+}
